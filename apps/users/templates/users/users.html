@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static joinby %}
+
+{% block title %}Users Page{% endblock %}
+
+{% block head_js %}
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script>
+        let csrfToken = "{{ csrf_token }}";
+    </script>
+    <script src="{% static 'users/main.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h1 id="hello-text">Hello {{ user }}!</h1>
+    <a href="{% url 'groups' %}">Go to groups page</a>
+
+    <form method="post">
+        <input type="text" name="some_text">
+        <input type="password" name="other_field">
+        <input type="radio" name="one_more_field">
+        <input type="submit" value="Submit">
+        {% csrf_token %}
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+    <h2>Before super</h2>
+    {{ block.super }}
+    <h2>After super</h2>
+
+    {% now 'Y'%}
+{% endblock %}
