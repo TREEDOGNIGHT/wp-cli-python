@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.users',
-    'apps.wp_cli'
+    'apps.commands',
+    'apps.taxonomies'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'amz/templates/'),
-            os.path.join(BASE_DIR, 'apps/users/templates/')
+            os.path.join(BASE_DIR, 'apps/students/templates/')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -120,8 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'apps/users/static/'),
-    os.path.join(BASE_DIR, 'apps/wp_cli/static/'),
+    os.path.join(BASE_DIR, 'apps/users/static/')
 ]
 
 try:

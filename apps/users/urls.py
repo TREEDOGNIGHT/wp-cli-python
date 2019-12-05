@@ -1,8 +1,8 @@
 from django.urls import path
 
-from apps.users.views import users, groups
+from apps.users.views import users, add_users
 
 urlpatterns = [
-    path('users/', users, name='users'),
-    path('gp/', groups, name='groups'),
+    path('', users, name='users'),
+    path('add_users/', add_users, name='add_users')
 ]

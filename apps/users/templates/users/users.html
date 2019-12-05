@@ -1,37 +1,32 @@
 {% extends 'base.html' %}
-{% load static joinby %}
+{% load static %}
 
 {% block title %}Users Page{% endblock %}
 
-{% block head_js %}
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-    <script>
-        let csrfToken = "{{ csrf_token }}";
-    </script>
-    <script src="{% static 'users/main.js' %}"></script>
-{% endblock %}
-
 {% block content %}
-    <h1 id="hello-text">Hello {{ user }}!</h1>
-    <a href="{% url 'groups' %}">Go to groups page</a>
+    <a href="{% url 'add_users' %}">Add User</a>
+
 
     <form method="post">
-        <input type="text" name="some_text">
-        <input type="password" name="other_field">
-        <input type="radio" name="one_more_field">
-        <input type="submit" value="Submit">
         {% csrf_token %}
+        {{ form }}
+        <button>Search!</button>
     </form>
 
-{% endblock %}
-
-{% block footer %}
-    <h2>Before super</h2>
-    {{ block.super }}
-    <h2>After super</h2>
-
-    {% now 'Y'%}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Birth date</th>
+            <th>User ID</th>
+        </tr>
+        {% for User in users %}
+            <tr>
+                <td>{{ User.full_name }}</td>
+                <td>{{ User.phone }}</td>
+                <td>{{ User.birth_date|default_if_none:"Data is not present" }}</td>
+                <td>{{ User.id_card }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
